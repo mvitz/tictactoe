@@ -85,12 +85,10 @@ final class SwingView implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("SwingView#actionPerformed(ActionEvent)");
         final Object source = e.getSource();
         for (int i = 0; i < fields.length; i++) {
             for (int j = 0; j < fields[i].length; j++) {
                 if (source.equals(fields[i][j])) {
-                    System.out.println(i + "," + j);
                     presenter.fieldClicked(i, j);
                 }
             }
