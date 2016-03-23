@@ -1,3 +1,7 @@
 # Maven
 target/
 
+# IntelliJ
+*.iml
+.idea/
+
