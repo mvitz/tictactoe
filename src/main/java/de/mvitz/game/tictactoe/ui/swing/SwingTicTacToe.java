@@ -20,12 +20,12 @@ public final class SwingTicTacToe {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         final SwingView view = new SwingView(SIZE);
-        SwingPlayer humanPlayer = new SwingPlayer(view);
+        final SwingHumanPlayer humanPlayer = new SwingHumanPlayer();
         presenter = new SwingPresenter(
             new Game(
                 new Board(SIZE),
-                humanPlayer,
-                new RandomPlayer()),
+                new SwingPlayer(view, humanPlayer),
+                new SwingPlayer(view, new RandomPlayer())),
             view,
             humanPlayer);
 

@@ -6,9 +6,9 @@ final class SwingPresenter {
 
     private final Game game;
     private final SwingView view;
-    private final SwingPlayer humanPlayer;
+    private final SwingHumanPlayer humanPlayer;
 
-    public SwingPresenter(Game game, SwingView view, SwingPlayer humanPlayer) {
+    public SwingPresenter(Game game, SwingView view, SwingHumanPlayer humanPlayer) {
         this.game = game;
         this.view = view;
         this.view.setPresenter(this);

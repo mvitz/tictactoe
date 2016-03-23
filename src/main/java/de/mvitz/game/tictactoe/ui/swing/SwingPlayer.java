@@ -4,30 +4,22 @@ import de.mvitz.game.tictactoe.domain.Board;
 import de.mvitz.game.tictactoe.domain.Game.Turn;
 import de.mvitz.game.tictactoe.domain.Player;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingDeque;
+import javax.swing.*;
 
 final class SwingPlayer implements Player {
 
-    private final BlockingQueue<Turn> queue = new LinkedBlockingDeque<>(1);
     private final SwingView view;
+    private final Player player;
 
-    public SwingPlayer(SwingView view) {
+    public SwingPlayer(SwingView view, Player player) {
         this.view = view;
+        this.player = player;
     }
 
     @Override
     public Turn nextTurn(Board board) {
-        view.draw(board);
-        try {
-            return queue.take();
-        } catch (final InterruptedException ex) {
-            throw new RuntimeException("Error while waiting for a human move.", ex);
-        }
-    }
-
-    public void take(int row, int column) {
-        queue.offer(new Turn(row, column));
+        SwingUtilities.invokeLater(() -> view.draw(board));
+        return player.nextTurn(board);
     }
 
 }
